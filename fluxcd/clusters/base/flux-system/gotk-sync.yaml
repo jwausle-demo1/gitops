@@ -12,11 +12,6 @@ spec:
   secretRef:
     name: flux-system
   url: https://github.com/jwausle/gitops.git
-  ignore: |
-    # exclude all
-    /*
-    # include deploy dir
-    !/fluxcd
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
