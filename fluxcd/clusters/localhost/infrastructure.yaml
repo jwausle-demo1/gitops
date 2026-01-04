@@ -10,14 +10,13 @@ spec:
     name: flux-system
   path: ./fluxcd/infrastructure/localhost
   prune: true
-  validation: client
   postBuild:
     substitute:
       traefik_namespace: "traefik"
       traefik_version: "38.0.1"
       weave_namespace: "weave"
   healthChecks:
-    - apiVersion: helm.toolkit.fluxcd.io/v2beta1
+    - apiVersion: helm.toolkit.fluxcd.io/v2
       kind: HelmRelease
       name: traefik
       namespace: traefik

@@ -4,28 +4,28 @@ GITHUB_USER=${GITHUB_USER:-jwausle}
 GITHUB_TOKEN=${GITHUB_TOKEN:-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}
 GITHUB_REPO_NAME=${GITHUB_REPO_NAME:-$(basename `git rev-parse --show-toplevel`)}
 
-if [[ "${CLUSTER_NAME}" == */localhost  ]] && [[ "${KUBECONFIG}" != *.k3s/kubeconfig.yaml ]]; then
-   echo "export KUBECONFIG=$(pwd)/.k3s/kubeconfig.yaml to install at localhost "
-   exit 1
-fi
+#if [[ "${CLUSTER_NAME}" == */localhost  ]] && [[ "${KUBECONFIG}" != *.k3s/kubeconfig.yaml ]]; then
+#   echo "export KUBECONFIG=$(pwd)/.k3s/kubeconfig.yaml to install at localhost "
+#   exit 1
+#fi
 
 # Install fluxcd resources to namespace flux-system
-flux install
+echo "flux install"
 
 # Connect flux with the gitrepo (upload ssh key and push flux-system components)
 flux bootstrap github \
+  --token-auth \
   --owner="${GITHUB_USER}" \
   --repository="${GITHUB_REPO_NAME}" \
+  --branch="${BRANCH}" \
+  --path=fluxcd/clusters/base \
+  --hostname=github.com \
   --private=false \
   --personal=true \
-  --branch="${BRANCH}" \
-  --interval=1m \
-  --hostname=github.com \
-  --token-auth \
-  --path=fluxcd/clusters/base
+  --interval=1m --verbose
 
 # Setup cluster configuration by name under `./fluxcd/clusters/`
-flux create kustomization flux-system \
+flux create kustomization flux-system-demo \
   --source=flux-system \
   --path="${CLUSTER_NAME}" \
   --prune=true \

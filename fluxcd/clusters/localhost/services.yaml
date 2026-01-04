@@ -12,7 +12,6 @@ spec:
     name: flux-system
   path: ./fluxcd/services/localhost
   prune: true
-  validation: client
   postBuild:
     substitute:
       app_namespace: "example"

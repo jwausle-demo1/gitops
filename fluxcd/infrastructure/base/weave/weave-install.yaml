@@ -12,7 +12,7 @@ spec:
   path: ./fluxcd/infrastructure/base/weave/install
   targetNamespace: ${weave_namespace:=forgetToConfigure}
   healthChecks:
-    - apiVersion: helm.toolkit.fluxcd.io/v2beta1
+    - apiVersion: helm.toolkit.fluxcd.io/v2
       kind: HelmRelease
       name: weave
       namespace: ${weave_namespace:=forgetToConfigure}
