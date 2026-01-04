@@ -14,12 +14,14 @@ flux install
 
 # Connect flux with the gitrepo (upload ssh key and push flux-system components)
 flux bootstrap github \
-  --owner=jwausle \
-  --repository=${GITHUB_REPO_NAME} \
+  --owner="${GITHUB_USER}" \
+  --repository="${GITHUB_REPO_NAME}" \
   --private=false \
   --personal=true \
-  --branch=${BRANCH} \
+  --branch="${BRANCH}" \
   --interval=1m \
+  --hostname=github.com \
+  --token-auth \
   --path=fluxcd/clusters/base
 
 # Setup cluster configuration by name under `./fluxcd/clusters/`
