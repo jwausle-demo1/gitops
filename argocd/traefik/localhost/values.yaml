@@ -11,9 +11,10 @@ traefik:
     websecure:
       tls:
         enabled: true
-    web:
-      redirectTo:
-        port: websecure
+
+  logs:
+    general:
+      level: "DEBUG"
 
   # Create an IngressRoute for the dashboard
   ingressRoute:

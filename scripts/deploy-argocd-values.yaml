@@ -14,6 +14,8 @@ server:
 configs:
   params:
     server.insecure: true
+    server.rootpath: /argocd
+    server.baseref: /argocd
   secret:
     # admin:admin password in https://www.browserling.com/tools/bcrypt
     argocdServerAdminPassword: "$2a$10$siTxM3xIt3QXrhImrWhksuq2nShQBLiXcdrR.8xtD5XkrZJl5op4m"
@@ -21,9 +23,9 @@ configs:
     params:
       server:
         insecureSkipVerify: true
-        ingress:
-          enabled: true
-          path: argocd
+#        extraArgs:
+#          - --rootpath
+#          - /argocd
 
 crds:
   install: true
