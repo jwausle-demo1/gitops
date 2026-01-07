@@ -47,6 +47,7 @@ print-config() {
   echo "Cluster"
   echo "- ARGOCD_RELEASE_NAME=$ARGOCD_RELEASE_NAME"
   echo "- ARGOCD_RELEASE_NAMESPACE=$ARGOCD_RELEASE_NAMESPACE"
+  echo
 }
 
 install-argocd-helm() {
