@@ -8,7 +8,7 @@ metadata:
 spec:
   project: default
   destination:
-    namespace: {{ .Values.namespace }}
+    namespace: example2
     server: https://kubernetes.default.svc
   sources:
     - repoURL: https://cowboysysop.github.io/charts/

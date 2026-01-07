@@ -1,17 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: whoami-repository
+  name: whoami
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: {{ .Values.namespace }}
+    namespace: example2
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: argocd/whoami-repository/localhost
+    path: argocd/whoami/localhost
     repoURL: https://github.com/jwausle/gitops.git
     targetRevision: master
   syncPolicy:
